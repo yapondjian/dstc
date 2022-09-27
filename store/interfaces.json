@@ -1,0 +1,11 @@
+{
+    "custom-login-username": {
+        "component": "CustomLoginUserName",
+        "allowed": [
+            "menu"
+        ]
+    },
+    "custom-product-badge": {
+        "component": "CustomProductBadges"
+    }
+}
