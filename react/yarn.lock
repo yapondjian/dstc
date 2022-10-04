@@ -1495,9 +1495,9 @@ prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1,
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-"qcompra.store-components@https://eris--qcompra.myvtex.com/_v/private/typings/linked/v1/qcompra.store-components@0.0.1+build1664236504/public/_types/react":
-  version "0.0.0"
-  resolved "https://eris--qcompra.myvtex.com/_v/private/typings/linked/v1/qcompra.store-components@0.0.1+build1664236504/public/_types/react#fa7a0347e046eab3dd768998fc9252b2c0dd5aef"
+"qcompra.store-components@http://qcompra.vtexassets.com/_v/public/typings/v1/qcompra.store-components@0.0.2/public/@types/qcompra.store-components":
+  version "0.0.2"
+  resolved "http://qcompra.vtexassets.com/_v/public/typings/v1/qcompra.store-components@0.0.2/public/@types/qcompra.store-components#967ac1962bfe672d36181018a894ae48a17e4395"
 
 raf@^3.3.0, raf@^3.4.0:
   version "3.4.1"
@@ -2052,6 +2052,10 @@ vtex-tachyons@^3.2.0:
   version "1.25.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.my-account@1.25.0/public/@types/vtex.my-account#3bc46389c0aa28f4e3e2e008fe3690f5901b1f2a"
 
+"vtex.order-items@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-items@0.13.21/public/@types/vtex.order-items":
+  version "0.13.21"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-items@0.13.21/public/@types/vtex.order-items#b88b2d267bc1b2877cae92e657b3934d4f01a960"
+
 "vtex.order-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.12.0/public/@types/vtex.order-manager":
   version "0.12.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.12.0/public/@types/vtex.order-manager#2cf6a9d2a31bc503b783c257695b0d17c09b5696"
@@ -2063,6 +2067,10 @@ vtex-tachyons@^3.2.0:
 "vtex.pixel-manager@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pixel-manager@1.8.0/public/@types/vtex.pixel-manager":
   version "1.8.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pixel-manager@1.8.0/public/@types/vtex.pixel-manager#3ccfcb1927614984a5f7a3e5650c8c8d2bd3c0f4"
+
+"vtex.product-bookmark-interfaces@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-bookmark-interfaces@1.0.1/public/@types/vtex.product-bookmark-interfaces":
+  version "1.0.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-bookmark-interfaces@1.0.1/public/@types/vtex.product-bookmark-interfaces#2c26815e4afa45b2e254a23e5abb356424bb09e7"
 
 "vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context":
   version "0.10.0"
@@ -2180,9 +2188,9 @@ vtex-tachyons@^3.2.0:
   version "0.16.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-drawer@0.16.2/public/@types/vtex.store-drawer#3e3a0e07babcf623922f1eb0c85185bcd12b8002"
 
-"vtex.store-footer@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-footer@2.25.0/public/@types/vtex.store-footer":
-  version "2.25.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-footer@2.25.0/public/@types/vtex.store-footer#8a6c11f53c281793609b03b205f5f7cadac70b4f"
+"vtex.store-footer@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-footer@2.26.0/public/@types/vtex.store-footer":
+  version "2.26.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-footer@2.26.0/public/@types/vtex.store-footer#434f87c10fafb4d145dea1c95906a650d9fab04a"
 
 "vtex.store-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-form@0.8.0/public/@types/vtex.store-form":
   version "0.8.0"

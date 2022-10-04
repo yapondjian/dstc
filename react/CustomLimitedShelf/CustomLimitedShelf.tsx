@@ -1,4 +1,5 @@
-import React, { useRef, VFC } from 'react'
+import type { VFC } from 'react'
+import React, { useRef } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import Countdown from 'react-countdown'
@@ -28,6 +29,8 @@ interface Count {
   seconds: number
   completed: boolean
 }
+
+const CountdownComponent = Countdown as any
 
 const CustomLimitedShelf: StorefrontComponent<CustomLimitedShelfProps> = ({
   title,
@@ -82,13 +85,17 @@ const CustomLimitedShelf: StorefrontComponent<CustomLimitedShelfProps> = ({
     )
   }
 
+  const count = (
+    <CountdownComponent date={new Date(finalDate)} renderer={renderer} />
+  )
+
   return (
     <div className={handles.shelfLimitedWrapper}>
       <div className={handles.shelfLimitedWrapperTimer}>
         <h3 ref={titleRef} className={handles.shelfLimitedTitle}>
           {title}
         </h3>
-        <Countdown date={new Date(finalDate)} renderer={renderer} />
+        {count}
       </div>
       <ExtensionPoint id="flex-layout.row" />
     </div>
