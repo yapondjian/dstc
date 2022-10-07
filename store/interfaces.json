@@ -32,5 +32,12 @@
         "allowed": [
             "flex-layout.row"
         ]
+    },
+    "custom-login": {
+        "component": "CustomLogin",
+        "render": "client",
+        "allowed": [
+            "flex-layout.row"
+        ]
     }
 }

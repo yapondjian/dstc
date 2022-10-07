@@ -72,7 +72,8 @@
     "vtex.css-handles": "1.x",
     "vtex.info-card-list": "0.x",
     "vtex.session-client": "1.x",
-    "vtex.admin-graphql": "2.x"
+    "vtex.admin-graphql": "2.x",
+    "vtex.safedata": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
