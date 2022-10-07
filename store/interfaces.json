@@ -16,5 +16,21 @@
     },
     "buy-together-custom": {
         "component": "BuyTogetherCustom"
+    },
+    "custom-modal-exit": {
+        "component": "CustomModalExit",
+        "render": "client",
+        "allowed": [
+            "modal-layout",
+            "flex-layout.row",
+            "rich-text"
+        ]
+    },
+    "custom-modal-newsletter": {
+        "component": "CustomModalNewsletter",
+        "render": "client",
+        "allowed": [
+            "flex-layout.row"
+        ]
     }
 }
