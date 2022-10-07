@@ -1,60 +1,46 @@
 import React, { useEffect } from 'react'
-import { useQuery } from 'react-apollo'
 import { ExtensionPoint } from 'vtex.render-runtime'
-
-import GET_PROFILE from './graphql/profile.gql'
-
-interface Profile {
-  email: string
-  lastName: string
-  firstName: string
-}
-
-const getProfileName = (profile: Profile) => {
-  if (profile?.firstName) {
-    return profile.firstName
-  }
-
-  return profile?.email
-}
+import { useRenderSession } from 'vtex.session-client'
 
 export default function CustomLoginUsername() {
-  const { data, loading, error } = useQuery<{ profile: Profile }>(GET_PROFILE, {
-    ssr: false,
-  })
+  const { session, loading, error } = useRenderSession() as any
 
   useEffect(() => {
-    if (!data?.profile) return
+    if (session?.namespaces?.profile?.isAuthenticated?.value !== 'true') return
 
-    const loginLabel = document.querySelector(
-      '.vtex-menu-2-x-styledLinkContent--header-dropdown-menu-login'
-    )
+    setTimeout(() => {
+      const loginLabel = document.querySelector(
+        '.vtex-menu-2-x-styledLinkContent--header-dropdown-menu-login'
+      )
 
-    if (loginLabel) {
-      loginLabel.innerHTML = `Olá ${getProfileName(data.profile).slice(
-        0,
-        15
-      )}...`
-    }
+      if (loginLabel) {
+        loginLabel.innerHTML = `Olá ${session?.namespaces?.profile?.firstName?.value.slice(
+          0,
+          15
+        )}...`
+      }
 
-    const loginButton = document.querySelector(
-      '.vtex-store-link-0-x-link--login-entrar'
-    )
+      const loginButton = document.querySelector(
+        '.vtex-store-link-0-x-link--login-entrar'
+      )
 
-    if (loginButton) {
-      loginButton.remove()
-    }
+      console.log(loginButton)
 
-    const loginSignIn = document.querySelector(
-      '.vtex-rich-text-0-x-container--login-entrar'
-    )
+      if (loginButton) {
+        loginButton.remove()
+      }
 
-    if (loginSignIn) {
-      loginSignIn.remove()
-    }
-  }, [data])
+      const loginSignIn = document.querySelector(
+        '.vtex-rich-text-0-x-container--login-entrar'
+      )
 
-  if (loading || error || !data?.profile) {
+      if (loginSignIn) {
+        loginSignIn.remove()
+      }
+    }, 1000)
+  }, [session])
+
+  if (loading || error) {
     return <ExtensionPoint id="menu" />
   }
 

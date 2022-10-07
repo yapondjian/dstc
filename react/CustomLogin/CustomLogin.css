@@ -120,3 +120,19 @@
 .customLoginContainer :global(.vtex-button):hover {
   background-color: #fc7f0b;
 }
+
+@media screen and (max-width: 768px) {
+  .customLoginWrapper {
+    padding: 2rem 0px;
+    flex-direction: column;
+  }
+
+  .customRegisterWrapper,
+  .customLoginContainer {
+    width: 100%;
+  }
+
+  .customLoginContainer {
+    padding: 0px;
+  }
+}
