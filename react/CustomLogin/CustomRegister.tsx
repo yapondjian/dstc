@@ -3,9 +3,6 @@ import './CustomLogin.css'
 import { useCssHandles } from 'vtex.css-handles'
 import { Button, Input, withToast } from 'vtex.styleguide'
 import axios from 'axios'
-import { useMutation } from 'react-apollo'
-
-import CREATE_USER_GQL from './graphql/createDocument.gql'
 
 const CSS_HANDLES = ['customRegisterWrapper']
 
@@ -34,11 +31,6 @@ const maskPhone = (value: string) => {
     .replace(/(\d{5})(\d{4})(\d)/, '$1-$2')
 }
 
-interface DocumentInput {
-  key: string
-  value: string
-}
-
 function CustomRegister({
   setSuccesRegister,
   showToast,
@@ -46,11 +38,6 @@ function CustomRegister({
   setSuccesRegister: (value: boolean) => void
   showToast: (params: { message: string }) => void
 }) {
-  const [createUser] = useMutation<
-    any,
-    { acronym: string; document: { fields: DocumentInput[] } }
-  >(CREATE_USER_GQL)
-
   const { handles } = useCssHandles(CSS_HANDLES)
   const [isLoading, setLoading] = useState(false)
   const [register, setRegister] = useState<RegisterState>({
@@ -61,10 +48,16 @@ function CustomRegister({
     phone: '',
   })
 
+  const [duplicated, setDuplicated] = useState(false)
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value, name },
     } = event
+
+    if (name === 'email') {
+      setDuplicated(false)
+    }
 
     setRegister({
       ...register,
@@ -75,20 +68,10 @@ function CustomRegister({
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     event.stopPropagation()
+    setDuplicated(false)
 
     try {
       setLoading(true)
-
-      const { data } = await axios.get<Array<{ id: string }>>(
-        `/api/dataentities/CL/search?_where=email=${register.email}`
-      )
-
-      if (data.length) {
-        return showToast({
-          message: `Usuário: ${register.email} já está cadastrado!`,
-        })
-      }
-
       const { firstName } = register
 
       const userData: Record<string, string> = {
@@ -102,19 +85,20 @@ function CustomRegister({
         ? (firstName.split(' ').pop() as string)
         : ''
 
-      await createUser({
-        variables: {
-          acronym: 'CL',
-          document: {
-            fields: Object.keys(userData).map(field => ({
-              key: field,
-              value: String(userData[field]),
-            })),
-          },
-        },
-      })
+      const { data: registerData } = await axios.post(
+        '/v1/api/register',
+        userData
+      )
 
-      setSuccesRegister(true)
+      if (registerData.duplicated) {
+        setLoading(false)
+
+        return setDuplicated(true)
+      }
+
+      if (registerData.created) {
+        return setSuccesRegister(true)
+      }
     } catch (error) {
       setLoading(false)
       showToast({
@@ -143,6 +127,8 @@ function CustomRegister({
           name="email"
           onChange={handleChange}
           value={register.email}
+          error={duplicated}
+          errorMessage={duplicated && 'E-mail já foi cadastrado!'}
           type="email"
           disabled={isLoading}
         />
