@@ -37,7 +37,8 @@
         "component": "CustomLogin",
         "render": "client",
         "allowed": [
-            "flex-layout.row"
+            "flex-layout.row",
+            "login-content"
         ]
     }
 }

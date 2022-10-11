@@ -3,23 +3,26 @@ import './CustomLogin.css'
 import { useCssHandles } from 'vtex.css-handles'
 import { Alert, Button, Input, withToast } from 'vtex.styleguide'
 import axios from 'axios'
-import { useMutation } from 'react-apollo'
 
-import SEND_EMAIL_VERIFICATION from './graphql/sendEmailVerification.gql'
-import ACCESS_TOKEN_VALIDATION from './graphql/accessKeySignIn.gql'
+const CSS_HANDLES = [
+  'customLoginContainer',
+  'acessTokenContainer',
+  'loginContent',
+]
 
-const CSS_HANDLES = ['customLoginContainer', 'acessTokenContainer']
-
-function Login({ showToast }: { showToast: (params: any) => void }) {
+function Login({
+  showToast,
+  setApproved,
+}: {
+  showToast: (params: any) => void
+  setApproved: (value: boolean) => void
+}) {
   const { handles } = useCssHandles(CSS_HANDLES)
   const [isLoading, setLoading] = useState(false)
-  const [sendEmailVerification] = useMutation(SEND_EMAIL_VERIFICATION)
-  const [validate] = useMutation(ACCESS_TOKEN_VALIDATION)
   const [login, setLogin] = useState({
     email: '',
-    approved: true,
-    emailSent: false,
-    token: '',
+    approved: false,
+    called: false,
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,10 +40,6 @@ function Login({ showToast }: { showToast: (params: any) => void }) {
     event.preventDefault()
     event.stopPropagation()
     setLoading(true)
-    setLogin({
-      ...login,
-      approved: true,
-    })
 
     try {
       const { data: approved } = await axios.get<Array<{ approved: boolean }>>(
@@ -53,21 +52,11 @@ function Login({ showToast }: { showToast: (params: any) => void }) {
         return setLogin({
           ...login,
           approved: false,
+          called: true,
         })
       }
 
-      await sendEmailVerification({
-        variables: {
-          email: login.email,
-        },
-      })
-
-      setLogin({
-        ...login,
-        emailSent: true,
-        approved: true,
-      })
-      setLoading(false)
+      setApproved(true)
     } catch {
       setLoading(false)
       showToast({
@@ -76,81 +65,28 @@ function Login({ showToast }: { showToast: (params: any) => void }) {
     }
   }
 
-  const handleValidatetoken = async (event: React.FormEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
-    setLoading(true)
-    try {
-      await validate({
-        variables: {
-          email: login.email,
-          code: login.token,
-        },
-      }).then(() => {
-        setTimeout(() => {
-          setLoading(false)
-          window.location.href = '/'
-        }, 3000)
-      })
-    } catch {
-      setLoading(false)
-      showToast({
-        message:
-          'Houve um problema ao tentar validar o token de acesso, tente novamente',
-      })
-    }
-  }
-
   return (
     <section className={handles.customLoginContainer}>
       <h4>Já sou parceiro Qcompra</h4>
-      {login.emailSent ? (
-        <form onSubmit={handleValidatetoken}>
-          <div className={handles.acessTokenContainer}>
-            <Input
-              label="Insira token abaixo: "
-              placeholder=""
-              name="token"
-              onChange={handleChange}
-              type="number"
-              value={login.token}
-              disabled={isLoading}
-              require
-              required
-            />
-          </div>
-          <Button isLoading={isLoading} type="submit">
-            Validar Token
-          </Button>
-        </form>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <Input
-            label="Insira seu e-mail abaixo: "
-            placeholder=""
-            name="email"
-            onChange={handleChange}
-            type="email"
-            value={login.email}
-            disabled={isLoading}
-            require
-            required
-          />
-          <Button isLoading={isLoading} type="submit">
-            Acessar
-          </Button>
-        </form>
-      )}
-      {login.approved !== true ? (
+      <form onSubmit={handleSubmit}>
+        <Input
+          label="Insira seu e-mail abaixo: "
+          placeholder=""
+          name="email"
+          onChange={handleChange}
+          type="email"
+          value={login.email}
+          disabled={isLoading}
+          require
+          required
+        />
+        <Button isLoading={isLoading} type="submit">
+          Acessar
+        </Button>
+      </form>
+      {login.approved === false && login.called === true ? (
         <div style={{ marginTop: '1rem' }}>
           <Alert type="warning">Seu cadastro ainda não foi aprovado!</Alert>
-        </div>
-      ) : null}
-      {login.emailSent === true ? (
-        <div style={{ marginTop: '1rem' }}>
-          <Alert type="success">
-            Enviamos o token de acesso para o email: {login.email}
-          </Alert>
         </div>
       ) : null}
     </section>

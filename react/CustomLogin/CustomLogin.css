@@ -30,6 +30,10 @@
 }
 
 .customLoginContainer {
+  padding-left: 0px;
+}
+
+.customLoginContainer {
   background-color: #fff;
   border: none;
 }
@@ -121,6 +125,30 @@
   background-color: #fc7f0b;
 }
 
+.loginContent :global(.vtex-login-2-x-content) {
+  display: flex !important;
+}
+
+.loginContent {
+  padding: 4rem 0px;
+}
+
+.loginContentBackButton {
+  background: #014fcf 0% 0% no-repeat padding-box;
+  border-radius: 22px;
+  opacity: 1;
+  color: #fff;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+  border: none;
+  padding: 0.5rem;
+  min-width: 100px;
+  cursor: pointer;
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
   .customLoginWrapper {
     padding: 2rem 0px;
@@ -134,5 +162,9 @@
 
   .customLoginContainer {
     padding: 0px;
+  }
+
+  .loginContent {
+    padding: 1rem 0px;
   }
 }
