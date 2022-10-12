@@ -40,5 +40,8 @@
             "flex-layout.row",
             "login-content"
         ]
+    },
+    "custom-contact-form": {
+        "component": "ContactForm"
     }
 }
