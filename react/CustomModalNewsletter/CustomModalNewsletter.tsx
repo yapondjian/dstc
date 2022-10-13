@@ -26,18 +26,15 @@ export default function CustomModalNewsletter() {
 
   return (
     <Modal
-      classNames={{
-        overlay: 'test',
-        wrapper: 'test',
-      }}
       isOpen={isOpen}
       showCloseIcon
-      container={<div className="vtex-test" />}
       closeOnEsc
       centered
       onClose={() => onClose()}
     >
-      <ExtensionPoint id="flex-layout.row" />
+      <div>
+        <ExtensionPoint id="flex-layout.row" />
+      </div>
     </Modal>
   )
 }
