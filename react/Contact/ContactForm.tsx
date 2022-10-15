@@ -131,7 +131,6 @@ function ContactForm({ showToast }: { showToast: (params: any) => void }) {
         })
       })
     } catch (error) {
-      window.console.log(error)
       setLoading(false)
       showToast({
         message: 'Não foi possível enviar o formulário no momento!',

@@ -43,5 +43,19 @@
     },
     "custom-contact-form": {
         "component": "ContactForm"
+    },
+    "b2b-custom-provider": {
+        "component": "B2BProfileProvider"
+    },
+    "custom-condition-children": {
+        "component": "ConditionChildren",
+        "composition": "children"
+    },
+    "custom-buy-button-condition": {
+        "component": "CustomBuyButtonCondition",
+        "allowed": [
+            "add-to-cart-button",
+            "product-summary-buy-button"
+        ]
     }
 }

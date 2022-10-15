@@ -1,0 +1,8 @@
+query GetApproved($where: String!) {
+  documents(acronym: "CL", fields: "approved", where: $where) {
+    fields {
+      value
+      key
+    }
+  }
+}

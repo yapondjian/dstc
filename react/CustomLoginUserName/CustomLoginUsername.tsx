@@ -24,8 +24,6 @@ export default function CustomLoginUsername() {
         '.vtex-store-link-0-x-link--login-entrar'
       )
 
-      console.log(loginButton)
-
       if (loginButton) {
         loginButton.remove()
       }
