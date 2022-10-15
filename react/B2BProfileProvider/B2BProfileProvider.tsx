@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useMemo } from 'react'
 import { useQuery } from 'react-apollo'
 import { useRenderSession } from 'vtex.session-client'
+import { Spinner } from 'vtex.styleguide'
 
 import type { Session } from '../typings/session'
 import GET_CLIENT_APPROVED_BY_EMAIL from './graphql/getApproved.gql'
@@ -56,7 +57,20 @@ export default function B2BProfileProvider({
 
   if (loading || profileLoading) {
     // adicionar loadder
-    return <div />
+    return (
+      <div
+        className="vtex_b2b-loader"
+        style={{
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Spinner color="#FF601F" size={50} />
+      </div>
+    )
   }
 
   const approved = (data?.documents ?? []).length > 0

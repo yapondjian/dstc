@@ -8,4 +8,5 @@ declare module 'vtex.styleguide' {
   export const Input: any
   export const Dropdown: any
   export const Textarea: any
+  export const Spinner: any
 }
