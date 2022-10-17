@@ -57,5 +57,11 @@
             "add-to-cart-button",
             "product-summary-buy-button"
         ]
+    },
+    "custom-product-kit": {
+        "component": "ProductKit",
+        "allowed": [
+            "flex-layout.col"
+        ]
     }
 }

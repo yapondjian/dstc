@@ -1,0 +1,54 @@
+query GetProductKit($slug: String) {
+  product(slug: $slug) @context(provider: "vtex.search-graphql") {
+    items {
+      kitItems {
+        product {
+          brand
+          categoryId
+          description
+          link
+          linkText
+          productId
+          productName
+          productReference
+          jsonSpecifications
+        }
+        sku {
+          itemId
+          name
+          nameComplete
+          complementName
+          sellers {
+            sellerId
+            commertialOffer {
+              Installments {
+                Value
+                InterestRate
+                TotalValuePlusInterestRate
+                NumberOfInstallments
+                PaymentSystemName
+                PaymentSystemGroupName
+                Name
+              }
+              Price
+              ListPrice
+              spotPrice
+              PriceWithoutDiscount
+              AvailableQuantity
+            }
+          }
+          ean
+          measurementUnit
+          unitMultiplier
+          images(quantity: 1) {
+            imageUrl
+          }
+          variations {
+            name
+            values
+          }
+        }
+      }
+    }
+  }
+}
