@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { ExtensionPoint } from 'vtex.render-runtime'
 import { useRenderSession } from 'vtex.session-client'
 
-export default function CustomLoginUsername() {
+export default function CustomLoginUsername({
+  children,
+}: {
+  children: React.ReactElement
+}) {
   const { session, loading, error } = useRenderSession() as any
 
   useEffect(() => {
@@ -19,27 +23,23 @@ export default function CustomLoginUsername() {
           15
         )}...`
       }
-
-      const loginButton = document.querySelector(
-        '.vtex-store-link-0-x-link--login-entrar'
-      )
-
-      if (loginButton) {
-        loginButton.remove()
-      }
-
-      const loginSignIn = document.querySelector(
-        '.vtex-rich-text-0-x-container--login-entrar'
-      )
-
-      if (loginSignIn) {
-        loginSignIn.remove()
-      }
     }, 1000)
+  }, [session])
+
+  const isLogged = useMemo(() => {
+    if (session?.namespaces?.profile?.isAuthenticated?.value !== 'true') {
+      return false
+    }
+
+    return true
   }, [session])
 
   if (loading || error) {
     return <ExtensionPoint id="menu" />
+  }
+
+  if (isLogged) {
+    return children
   }
 
   return <ExtensionPoint id="menu" />

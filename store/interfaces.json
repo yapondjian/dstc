@@ -3,7 +3,8 @@
         "component": "CustomLoginUserName",
         "allowed": [
             "menu"
-        ]
+        ],
+        "composition": "children"
     },
     "custom-product-badge": {
         "component": "CustomProductBadges"
