@@ -1,0 +1,14 @@
+{
+  benefits(items: { id: "234", quantity: "1", seller: "1" }) {
+    name
+    featured
+    teaserType
+    items {
+      minQuantity
+      discount
+      benefitProduct {
+        productId
+      }
+    }
+  }
+}

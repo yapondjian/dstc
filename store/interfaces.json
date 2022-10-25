@@ -64,5 +64,8 @@
         "allowed": [
             "flex-layout.col"
         ]
+    },
+    "pdp-benefits": {
+        "component": "PDPBenefits"
     }
 }
