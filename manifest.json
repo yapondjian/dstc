@@ -1,7 +1,7 @@
 {
   "vendor": "qcompra",
   "name": "store-components",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "builders": {
     "store": "0.x",
     "react": "3.x"
