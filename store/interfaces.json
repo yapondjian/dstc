@@ -67,5 +67,8 @@
     },
     "pdp-benefits": {
         "component": "PDPBenefits"
+    },
+    "free-shipping-progress-bar": {
+        "component": "FreeShippingProgressBar"
     }
 }
