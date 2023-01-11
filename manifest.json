@@ -1,7 +1,7 @@
 {
   "vendor": "auahapartnerbr",
   "name": "store-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "builders": {
     "store": "0.x",
     "react": "3.x"
