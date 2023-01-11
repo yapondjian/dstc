@@ -90,7 +90,7 @@ export default function BuyTogether() {
       return
     }
 
-    getBuyTogetherItems(product.selectedItem?.itemId as string)
+    getBuyTogetherItems(product.product?.productId as string)
   }, [product])
 
   if (!buyTogetherItems.length) {
