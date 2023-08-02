@@ -70,5 +70,22 @@
     },
     "free-shipping-progress-bar": {
         "component": "FreeShippingProgressBar"
-    }
+    },
+    "custom-html": {
+        "component": "CustomHtmlComponent",
+        "content": {
+          "title": "custom HTML",
+          "property": {
+            "items": [
+                {
+                    "text": {
+                        "title": "Custom HTML",
+                        "$ref": "app:vtex.native-types#/definitions/richText",
+                        "default": ""
+                    }
+                }
+            ]
+          }
+        }
+      }
 }
