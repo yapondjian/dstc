@@ -1,37 +1,42 @@
 import React from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import type { CssHandlesTypes } from 'vtex.css-handles'
 
 const CSS_HANDLES = [
   'container',
   'wrapper',
 ] as const
 
-type Props = {
-  text?: string
-  htmlId?: string
-  classes?: CssHandlesTypes.CustomClasses<typeof CSS_HANDLES>
+
+interface PropsBanner {
+  subtext: string
+  sublink: string
 }
 
-function CustomHtmlComponent({
-  text = '',
-  htmlId,
-  classes,
-}: Props) {
+interface Banners {
+  text: string
+  html: string
+  subtitles: PropsBanner[]
+}
+
+interface PropsHTMLCustom {
+  titles: Banners[]
+}
+
+
+const CustomHtmlComponent = ({ titles }:PropsHTMLCustom) => {
   
-  const { handles } = useCssHandles(CSS_HANDLES, {
-    classes,
-  })
+  const { handles } = useCssHandles(CSS_HANDLES)
+
+
+  
 
   return (
-    <div
-      id={htmlId}
-      className={`${ handles.container}`}
-    >
-      <div
-        className={handles.wrapper}
-        dangerouslySetInnerHTML={{ __html: text }}
-      />
+    <div className={handles.wrapper}>
+
+      {titles?.map((title, index) => (
+        <div key={index} className={handles.wrapper} dangerouslySetInnerHTML={{ __html: title.html }}></div>
+      ))}
+
     </div>
   )
 }
@@ -41,13 +46,30 @@ CustomHtmlComponent.schema = {
   description: 'Adicione seu componente html aqui',
   type: 'object',
   properties: {
-    text: {
-      title: 'HTML',
-      description: 'Adicione o HTML desejado',
-      type: 'string',
-      default: null,
+    titles: {
+      type: 'array',
+      title: 'Banners',
+      items: {
+        title: 'Banner Item',
+        type: 'object',
+        properties: {
+          __editorItemTitle: {
+            title: 'Nome do Ítem',
+            type: 'string',
+          },
+          text: {
+            title: 'Titulo',
+            type: 'string',
+          },
+          html: {
+            title: 'Html',
+            type: 'string',
+          },
+        }
+      },
     },
-  }
+  },
+
 }
 
 export default CustomHtmlComponent

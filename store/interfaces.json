@@ -1,91 +1,19 @@
 {
-    "custom-login-username": {
-        "component": "CustomLoginUserName",
-        "allowed": [
-            "menu"
-        ],
-        "composition": "children"
-    },
-    "custom-product-badge": {
-        "component": "CustomProductBadges"
-    },
-    "custom-limited-shelf": {
-        "component": "CustomLimitedShelf",
-        "allowed": [
-            "flex-layout.row"
-        ]
-    },
-    "buy-together-custom": {
-        "component": "BuyTogetherCustom"
-    },
-    "custom-modal-exit": {
-        "component": "CustomModalExit",
-        "render": "client",
-        "allowed": [
-            "modal-layout",
-            "flex-layout.row",
-            "rich-text"
-        ]
-    },
-    "custom-modal-newsletter": {
-        "component": "CustomModalNewsletter",
-        "render": "client",
-        "allowed": [
-            "flex-layout.row"
-        ]
-    },
-    "custom-login": {
-        "component": "CustomLogin",
-        "render": "client",
-        "allowed": [
-            "flex-layout.row",
-            "login-content"
-        ]
-    },
-    "custom-contact-form": {
-        "component": "ContactForm"
-    },
-    "b2b-custom-provider": {
-        "component": "B2BProfileProvider"
-    },
-    "custom-condition-children": {
-        "component": "ConditionChildren",
-        "composition": "children"
-    },
-    "custom-buy-button-condition": {
-        "component": "CustomBuyButtonCondition",
-        "allowed": [
-            "add-to-cart-button",
-            "product-summary-buy-button"
-        ]
-    },
-    "custom-product-kit": {
-        "component": "ProductKit",
-        "allowed": [
-            "flex-layout.col"
-        ]
-    },
-    "pdp-benefits": {
-        "component": "PDPBenefits"
-    },
-    "free-shipping-progress-bar": {
-        "component": "FreeShippingProgressBar"
-    },
     "custom-html": {
         "component": "CustomHtmlComponent",
         "content": {
-          "title": "custom HTML",
-          "property": {
-            "items": [
-                {
-                    "text": {
-                        "title": "Custom HTML",
-                        "$ref": "app:vtex.native-types#/definitions/richText",
-                        "default": ""
+            "title": "custom HTML",
+            "property": {
+                "items": [
+                    {
+                        "text": {
+                            "title": "Custom HTML",
+                            "$ref": "app:vtex.native-types#/definitions/richText",
+                            "default": ""
+                        }
                     }
-                }
-            ]
-          }
+                ]
+            }
         }
-      }
+    }
 }

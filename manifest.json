@@ -1,10 +1,11 @@
 {
-  "vendor": "auahapartnerbr",
+  "vendor": "lojadior",
   "name": "store-components",
   "version": "0.0.1",
   "builders": {
     "store": "0.x",
-    "react": "3.x"
+    "react": "3.x",
+    "pixel": "0.x"
   },
   "scripts": {
     "postreleasy": "vtex publish --verbose"
